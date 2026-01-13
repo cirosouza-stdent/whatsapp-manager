@@ -33,6 +33,33 @@
                             Mensagens Agendadas
                         </a>
                     </li>
+
+                    <!-- Facebook -->
+                    <li>
+                        <a href="{{ route('facebook.index') }}" 
+                           class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ request()->routeIs('facebook*') ? 'bg-green-700 text-white' : 'text-green-200 hover:text-white hover:bg-green-700' }}">
+                            <i class="fab fa-facebook w-6 text-center {{ request()->routeIs('facebook*') ? 'text-white' : 'text-green-200 group-hover:text-white' }}"></i>
+                            Facebook
+                        </a>
+                    </li>
+
+                    <!-- Instagram -->
+                    <li>
+                        <a href="{{ route('instagram.index') }}" 
+                           class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ request()->routeIs('instagram*') ? 'bg-green-700 text-white' : 'text-green-200 hover:text-white hover:bg-green-700' }}">
+                            <i class="fab fa-instagram w-6 text-center {{ request()->routeIs('instagram*') ? 'text-white' : 'text-green-200 group-hover:text-white' }}"></i>
+                            Instagram
+                        </a>
+                    </li>
+
+                    <!-- Telegram -->
+                    <li>
+                        <a href="{{ route('telegram.index') }}" 
+                           class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ request()->routeIs('telegram*') ? 'bg-green-700 text-white' : 'text-green-200 hover:text-white hover:bg-green-700' }}">
+                            <i class="fab fa-telegram w-6 text-center {{ request()->routeIs('telegram*') ? 'text-white' : 'text-green-200 group-hover:text-white' }}"></i>
+                            Telegram
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -53,6 +80,27 @@
                                    class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 {{ request()->routeIs('configuracoes.whatsapp*') ? 'bg-green-700 text-white' : 'text-green-200 hover:text-white hover:bg-green-700' }}">
                                     <i class="fab fa-whatsapp w-5 text-center"></i>
                                     WhatsApp
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('configuracoes.facebook') }}" 
+                                   class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 {{ request()->routeIs('configuracoes.facebook*') ? 'bg-green-700 text-white' : 'text-green-200 hover:text-white hover:bg-green-700' }}">
+                                    <i class="fab fa-facebook w-5 text-center"></i>
+                                    Facebook
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('configuracoes.instagram') }}" 
+                                   class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 {{ request()->routeIs('configuracoes.instagram*') ? 'bg-green-700 text-white' : 'text-green-200 hover:text-white hover:bg-green-700' }}">
+                                    <i class="fab fa-instagram w-5 text-center"></i>
+                                    Instagram
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('configuracoes.telegram') }}" 
+                                   class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 {{ request()->routeIs('configuracoes.telegram*') ? 'bg-green-700 text-white' : 'text-green-200 hover:text-white hover:bg-green-700' }}">
+                                    <i class="fab fa-telegram w-5 text-center"></i>
+                                    Telegram
                                 </a>
                             </li>
                         </ul>

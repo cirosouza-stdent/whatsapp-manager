@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 use App\Http\Controllers\ConfiguracaoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FacebookController;
+use App\Http\Controllers\InstagramController;
+use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\InstanciaController;
 use App\Http\Controllers\MensagemAgendadaController;
 use App\Http\Controllers\WebhookController;
@@ -66,6 +69,50 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/whatsapp', [ConfiguracaoController::class, 'whatsapp'])->name('whatsapp');
         Route::post('/whatsapp', [ConfiguracaoController::class, 'whatsappSalvar'])->name('whatsapp.salvar');
         Route::post('/whatsapp/testar', [ConfiguracaoController::class, 'whatsappTestar'])->name('whatsapp.testar');
+        
+        Route::get('/facebook', [ConfiguracaoController::class, 'facebook'])->name('facebook');
+        Route::post('/facebook', [ConfiguracaoController::class, 'facebookSalvar'])->name('facebook.salvar');
+        Route::post('/facebook/testar', [ConfiguracaoController::class, 'facebookTestar'])->name('facebook.testar');
+
+        Route::get('/instagram', [ConfiguracaoController::class, 'instagram'])->name('instagram');
+        Route::post('/instagram', [ConfiguracaoController::class, 'instagramSalvar'])->name('instagram.salvar');
+        Route::post('/instagram/testar', [ConfiguracaoController::class, 'instagramTestar'])->name('instagram.testar');
+
+        Route::get('/telegram', [ConfiguracaoController::class, 'telegram'])->name('telegram');
+        Route::post('/telegram', [ConfiguracaoController::class, 'telegramSalvar'])->name('telegram.salvar');
+        Route::post('/telegram/testar', [ConfiguracaoController::class, 'telegramTestar'])->name('telegram.testar');
+    });
+
+    // Facebook
+    Route::prefix('facebook')->name('facebook.')->group(function () {
+        Route::get('/', [FacebookController::class, 'index'])->name('index');
+        Route::get('/paginas', [FacebookController::class, 'paginas'])->name('paginas');
+        Route::get('/posts', [FacebookController::class, 'posts'])->name('posts');
+        Route::get('/criar-post', [FacebookController::class, 'criarPost'])->name('criar-post');
+        Route::post('/posts', [FacebookController::class, 'salvarPost'])->name('salvar-post');
+    });
+
+    // Instagram
+    Route::prefix('instagram')->name('instagram.')->group(function () {
+        Route::get('/', [InstagramController::class, 'index'])->name('index');
+        Route::get('/contas', [InstagramController::class, 'contas'])->name('contas');
+        Route::get('/posts', [InstagramController::class, 'posts'])->name('posts');
+        Route::get('/criar-post', [InstagramController::class, 'criarPost'])->name('criar-post');
+        Route::post('/posts', [InstagramController::class, 'salvarPost'])->name('salvar-post');
+    });
+
+    // Telegram
+    Route::prefix('telegram')->name('telegram.')->group(function () {
+        Route::get('/', [TelegramController::class, 'index'])->name('index');
+        Route::get('/bots', [TelegramController::class, 'bots'])->name('bots');
+        Route::get('/bots/criar', [TelegramController::class, 'criarBot'])->name('criar-bot');
+        Route::post('/bots', [TelegramController::class, 'salvarBot'])->name('salvar-bot');
+        Route::patch('/bots/{bot}/toggle', [TelegramController::class, 'toggleBot'])->name('toggle-bot');
+        Route::delete('/bots/{bot}', [TelegramController::class, 'excluirBot'])->name('excluir-bot');
+        Route::get('/canais', [TelegramController::class, 'canais'])->name('canais');
+        Route::get('/mensagens', [TelegramController::class, 'mensagens'])->name('mensagens');
+        Route::get('/criar-mensagem', [TelegramController::class, 'criarMensagem'])->name('criar-mensagem');
+        Route::post('/mensagens', [TelegramController::class, 'enviarMensagem'])->name('enviar-mensagem');
     });
 });
 
