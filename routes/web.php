@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\ConfiguracaoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstanciaController;
 use App\Http\Controllers\MensagemAgendadaController;
@@ -58,6 +59,13 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{mensagem}', [MensagemAgendadaController::class, 'destroy'])->name('destroy');
         Route::post('/{mensagem}/cancel', [MensagemAgendadaController::class, 'cancel'])->name('cancel');
         Route::post('/{mensagem}/retry', [MensagemAgendadaController::class, 'retry'])->name('retry');
+    });
+
+    // Configurações
+    Route::prefix('configuracoes')->name('configuracoes.')->group(function () {
+        Route::get('/whatsapp', [ConfiguracaoController::class, 'whatsapp'])->name('whatsapp');
+        Route::post('/whatsapp', [ConfiguracaoController::class, 'whatsappSalvar'])->name('whatsapp.salvar');
+        Route::post('/whatsapp/testar', [ConfiguracaoController::class, 'whatsappTestar'])->name('whatsapp.testar');
     });
 });
 

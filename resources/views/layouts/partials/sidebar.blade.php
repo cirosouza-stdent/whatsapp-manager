@@ -38,6 +38,30 @@
 
             <!-- Separador para futuras opções -->
             <li>
+                <div class="text-xs font-semibold leading-6 text-green-200">Configurações</div>
+                <ul role="list" class="-mx-2 mt-2 space-y-1">
+                    <li x-data="{ open: {{ request()->routeIs('configuracoes.*') ? 'true' : 'false' }} }">
+                        <button @click="open = !open" type="button"
+                                class="group flex w-full items-center gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ request()->routeIs('configuracoes.*') ? 'bg-green-700 text-white' : 'text-green-200 hover:text-white hover:bg-green-700' }}">
+                            <i class="fas fa-cog w-6 text-center {{ request()->routeIs('configuracoes.*') ? 'text-white' : 'text-green-200 group-hover:text-white' }}"></i>
+                            Configurações
+                            <i class="fas fa-chevron-right ml-auto text-xs transition-transform" :class="{ 'rotate-90': open }"></i>
+                        </button>
+                        <ul x-show="open" x-collapse class="mt-1 space-y-1 pl-9">
+                            <li>
+                                <a href="{{ route('configuracoes.whatsapp') }}" 
+                                   class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 {{ request()->routeIs('configuracoes.whatsapp*') ? 'bg-green-700 text-white' : 'text-green-200 hover:text-white hover:bg-green-700' }}">
+                                    <i class="fab fa-whatsapp w-5 text-center"></i>
+                                    WhatsApp
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Em breve -->
+            <li>
                 <div class="text-xs font-semibold leading-6 text-green-200">Em breve</div>
                 <ul role="list" class="-mx-2 mt-2 space-y-1">
                     <li>
@@ -56,12 +80,6 @@
                         <span class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-green-300 opacity-50 cursor-not-allowed">
                             <i class="fas fa-chart-bar w-6 text-center"></i>
                             Relatórios
-                        </span>
-                    </li>
-                    <li>
-                        <span class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-green-300 opacity-50 cursor-not-allowed">
-                            <i class="fas fa-cog w-6 text-center"></i>
-                            Configurações
                         </span>
                     </li>
                 </ul>
